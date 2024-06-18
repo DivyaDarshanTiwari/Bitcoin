@@ -12,6 +12,11 @@ interface currency_pair{
   viewValue: string;
 }
 
+interface bitcoin_pair{
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-display',
   standalone: true,
@@ -21,11 +26,9 @@ interface currency_pair{
 })
 export class DisplayComponent implements OnInit{
 
-  private c: string = 'USD'
   public curr!: any;
   constructor(private data:BitCoinServiceService)
-  {
-  }
+  {}
 
   foods: currency_pair[] = [
     {value: 'INR', viewValue: 'India'},
@@ -33,10 +36,22 @@ export class DisplayComponent implements OnInit{
     {value: 'USD', viewValue: 'USA'},
   ];
 
+  bit_tokens:bitcoin_pair[] = [
+    {value: 'BTC', viewValue: 'BitCoin'},
+    {value: 'DOGE', viewValue: 'Dogecoin'},
+    {value: 'ETC', viewValue: 'Ethereum Classic'},
+    {value: 'ETH', viewValue: 'Ethereum'},
+    {value: 'USDT', viewValue: 'Tether'},
+    {value: 'XLM', viewValue: ' Stellar'},
+    {value: 'XPM', viewValue: 'Primecoin'},
+  ]
+
+  public selected_bit_coin: string = this.bit_tokens[0].value;
+
   public selectedvalue: string = this.foods[0].value;
-  getData(currency:string)
+  getData(currency:string,crypto:string)
   {
-    return this.data.getBit(currency).subscribe(data =>
+    return this.data.getBit(currency,crypto).subscribe(data =>
       {
         console.log(data);
         this.curr = data;
@@ -45,7 +60,7 @@ export class DisplayComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getData(this.selectedvalue);
+    this.getData(this.selectedvalue,this.selected_bit_coin);
   }
 
 }

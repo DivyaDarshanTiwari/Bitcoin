@@ -12,10 +12,10 @@ export class BitCoinServiceService {
   private url = "https://api.coinbase.com/v2/prices/" //BTC-USD/buy endpoint
   constructor(private http:HttpClient) { }
 
-  getBit(currency: string):Observable<Data>
+  getBit(currency: string,crypto:string):Observable<Data>
   {
     console.log(currency);
-    let x = `${this.url}BTC-${currency}/buy`
+    let x = `${this.url}${crypto}-${currency}/buy`
     return this.http.get<Data>(x);
   }
 }

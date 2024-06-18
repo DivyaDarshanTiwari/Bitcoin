@@ -13,7 +13,7 @@
           </mat-card>
     </div>
     <br>
-    <mat-form-field>
+    <mat-form-field style="margin-right: 5px;">
       <mat-label>Country-Currency</mat-label>
       <mat-select [(value)]="selectedvalue">
         @for (food of foods; track food) {
@@ -21,8 +21,19 @@
         }
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Crypto Coin Selector</mat-label>
+      <mat-select [(value)]="selected_bit_coin">
+        @for (food of bit_tokens; track food) {
+          <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+        }
+
+      </mat-select>
+
+    </mat-form-field>
     <div class="example-button-row">
-      <button mat-flat-button (click)="getData(selectedvalue)">Submit</button>
+      <button mat-flat-button (click)="getData(selectedvalue,selected_bit_coin)">Submit</button>
     </div>
   </section>
 </section>
