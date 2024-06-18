@@ -1,23 +1,28 @@
-<section class="actual-display">
-  <div *ngIf="curr">
-    <h3>{{curr.data.base}}</h3>
-      <mat-card class="example-card" appearance="outlined">
-          <mat-card-content>{{curr.data.currency}}:{{curr.data.amount}}</mat-card-content>
-        </mat-card>
-  </div>
-  <br>
-  <mat-form-field>
-    <mat-label>Country-Currency</mat-label>
-    <mat-select [(value)]="selectedvalue">
-      <mat-option></mat-option>
-      @for (food of foods; track food) {
-        <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <div class="example-button-row">
-    <button mat-flat-button (click)="getData(selectedvalue)">Submit</button>
-  </div>
+<section class="display">
 
-
+  <div style="color: white;">
+    <h1>Welcome</h1>
+    <h2>To</h2>
+    <h3>The world of BitCoin</h3>
+  </div>
+  <section class="actual-display">
+    <div *ngIf="curr">
+      <h3 style="color: aliceblue;">{{curr.data.base}}</h3>
+        <mat-card class="example-card" appearance="outlined">
+            <mat-card-content>{{curr.data.currency}}:{{curr.data.amount}}</mat-card-content>
+          </mat-card>
+    </div>
+    <br>
+    <mat-form-field>
+      <mat-label>Country-Currency</mat-label>
+      <mat-select [(value)]="selectedvalue">
+        @for (food of foods; track food) {
+          <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <div class="example-button-row">
+      <button mat-flat-button (click)="getData(selectedvalue)">Submit</button>
+    </div>
+  </section>
 </section>
