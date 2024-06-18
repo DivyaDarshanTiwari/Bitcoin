@@ -1,11 +1,12 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component ,OnDestroy,OnInit} from '@angular/core';
 import { BitCoinServiceService } from '../bit-coin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import { JsonPipe, NgIf } from '@angular/common';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { Subscription } from 'rxjs';
 
 interface currency_pair{
   value: string;
@@ -24,9 +25,10 @@ interface bitcoin_pair{
   templateUrl: './display.component.html',
   styleUrl: './display.component.css'
 })
-export class DisplayComponent implements OnInit{
+export class DisplayComponent implements OnInit, OnDestroy{
 
   public curr!: any;
+  private subcription!: Subscription;
   constructor(private data:BitCoinServiceService)
   {}
 
@@ -51,7 +53,7 @@ export class DisplayComponent implements OnInit{
   public selectedvalue: string = this.foods[0].value;
   getData(currency:string,crypto:string)
   {
-    return this.data.getBit(currency,crypto).subscribe(data =>
+    this.subcription= this.data.getBit(currency,crypto).subscribe(data =>
       {
         console.log(data);
         this.curr = data;
@@ -62,5 +64,10 @@ export class DisplayComponent implements OnInit{
   ngOnInit(): void {
     this.getData(this.selectedvalue,this.selected_bit_coin);
   }
+
+  ngOnDestroy(): void {
+    this.subcription.unsubscribe();
+  }
+
 
 }
