@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 interface currency_pair{
   value: string;
@@ -21,7 +22,7 @@ interface bitcoin_pair{
 @Component({
   selector: 'app-display',
   standalone: true,
-  imports: [HttpClientModule,MatCardModule,JsonPipe,NgIf,MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule],
+  imports: [HttpClientModule,MatCardModule,JsonPipe,NgIf,MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule,CommonModule],
   templateUrl: './display.component.html',
   styleUrl: './display.component.css'
 })
