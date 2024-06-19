@@ -9,7 +9,7 @@
     <div *ngIf="curr">
       <h3 style="color: aliceblue;">{{curr.data.base}}</h3>
         <mat-card class="example-card" appearance="outlined">
-            <mat-card-content>{{curr.data.currency}}:{{curr.data.amount | number: '1.2-2'}}</mat-card-content>
+            <mat-card-content>{{curr.data.amount | currency: selectedvalue }}</mat-card-content>
           </mat-card>
     </div>
     <br>
