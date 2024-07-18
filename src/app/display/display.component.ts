@@ -56,14 +56,18 @@ export class DisplayComponent implements OnInit, OnDestroy{
   {
     this.subcription= this.data.getBit(currency,crypto).subscribe(data =>
       {
-        console.log(data);
         this.curr = data;
       }
     )
   }
 
+  private update_value(){
+    setInterval(()=>this.getData(this.selectedvalue,this.selected_bit_coin),1000);
+  }
+
   ngOnInit(): void {
     this.getData(this.selectedvalue,this.selected_bit_coin);
+    this.update_value();
   }
 
   ngOnDestroy(): void {

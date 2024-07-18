@@ -14,7 +14,6 @@ export class BitCoinServiceService {
 
   getBit(currency: string,crypto:string):Observable<Data>
   {
-    console.log(currency);
     let x = `${this.url}${crypto}-${currency}/buy`
     return this.http.get<Data>(x);
   }
